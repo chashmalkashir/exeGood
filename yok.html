@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        // let arr = [1, 2, 3, 9, 5];
+        // let i;
+        // arr.push(6)
+        // arr.pop()
+        // arr.shift()  // מוציא את האיבר הראשון
+        // //concat() מצרף 2 מערכים
+        // arr.sort()
+
+        // arr[8] = 8;
+        // for (i = 0; i < arr.length; i++) {
+        //     //   alert(arr[i]);
+        //     console.log(arr[i])
+        // }
+        // let ages = [3, 10, 18, 20];
+        // console.log("age  " + ages.some(checkAdult)) // Returns false
+        // function checkAdult(age) {
+        //     return age >= 28;
+        // }
+        // let ages2 = [3, 10, 18, 20];
+        // const even = (element) => element >= 18;
+        // // some((element, index, array) => {element==18  } )
+
+        // console.log("age2 "+ages2.some(even)) // Returns true
+        // // function checkAdult2(age) {
+        // //     return age >= 18;
+        // // }
+
+        // arr2 = arr.filter(a);
+        // function a(value, index, array) {
+        //     return value < 8;
+        // }
+        // console.log(arr2)
+        // console.log(arr.indexOf(5)) //מיקום האלמנט
+        // arr.includes(9) // המערך מכיל את המשתנה
+
+
+//////////////////////////////////// - bfs mat
+//         let bfs = (graph, root) => {
+//   let nodesLen = {};
+
+//   for(let i = 0; i < graph.length; i++){
+//     nodesLen[i] = Infinity; // Idicates that a node is not reachable from the start node
+//   }
+//   nodesLen[root] = 0; // The distance of the root node from the root node is set to 0
+
+//         let queue = [root] // Keep track of nodes we visit
+//   let current; // Keep track of the current node we are traversing
+
+//   // This loop will keep traversing nodes in the queue until we have no other node to traverse
+//   while(queue.length != 0){
+//     current  = queue.shift() // Removes the first element in the array
+
+//     let curConnected = graph[current] // We get all the nodes connected to the current node
+//     let neighborIdx = []
+//     let idx = curConnected.indexOf(1) // Gets the index of the first node connected to the current node because the number one in our array shows that the node is connected to anothe node on that index
+
+//     // If there is no node at the index of one, the index variable will be set to -1. 
+//     while(idx != -1){
+//       neighborIdx.push(idx) // So while index does not equals to -1, push our index onto our list of neighbors.
+//       idx = curConnected.indexOf(1, idx + 1) // This line searches for the next connected node.
+//     }
+
+//     // Now that we know all the nodes connected to the current node, we loop through this connected nodes, and get the distance
+//     for ( let j = 0; j < neighborIdx.length; j++){
+//       if (nodesLen[neighborIdx[j]] == Infinity){ // This line we haven't set the distance from the nodesLen[neighborIdx[j]] yet so we will set now. 
+//         nodesLen[neighborIdx[j]] = nodesLen[current] + 1
+//         queue.push(neighborIdx[j]) // We push the neighbor to the queue so the next time we go through the while loop, we will check the neighbors of that node too.
+//       }
+//     }
+//   }
+
+//   return nodesLen
+// }
+
+// let exBFSGraph = [
+//   [0,1,1,1,0],
+//   [0,0,1,0,0],
+//   [1,1,0,0,0],
+//   [0,0,0,1,0],
+//   [0,1,0,0,0]
+// ]
+
+//  console.log( bfs(exBFSGraph, 1))
+
+
+
+ ///////////////////////////אבא וילד
+
+// function bfs1(nodes, start ) {
+//     var listToExplore = [ start ];
+//     nodes[ start ].visited = true;
+//     while ( listToExplore.length > 0 ) {
+//         var nodeIndex = listToExplore.shift();
+//        console.log(nodes[nodeIndex].visited + " nodes[nodeIndex]")//פה לרשום פעולה שרוצים , שורה זו עוברת על כל איבר
+//         nodes[ nodeIndex ].links.forEac=( function( childIndex ) {
+//             if ( !nodes[ childIndex ].visited ) {
+//                 nodes[ childIndex ].visited = true;
+//                 listToExplore.push( childIndex );
+//             }
+//         } );
+//     }
+// };
+// let nodes = [
+//     {
+//         links: [ 1 ], // node 0 is linked to node 1
+//         visited: false
+//     }, {
+//         links: [ 0, 2 ], // node 1 is linked to node 0 and 2
+//         path: [],
+//         visited: false
+//     },
+//     {
+//         links: [ 3 ], // node 2 is linked to node 3
+//         visited: false 
+//     },
+//     {
+//         links: [  ], 
+//         visited: false 
+//     }
+//      ];
+// console.log("nodes "+ nodes[0].visited)
+//  bfs1( nodes,0 );
+
+  
+
+
+
+
+
+
+
+
+
+
+        function bfs12(root) {
+            let tmproot = root;
+            var listToExplore = [tmproot];
+            tmproot.id = 0;
+            while (listToExplore.length > 0) {
+                var temp = listToExplore.shift();
+                console.log(temp.name);//פה לרשום פעולה שרוצים , שורה זו עוברת על כל איבר
+                if (temp.children) {
+                for (let i = 0; i < temp.children.length; i++) {
+                    if (temp.children[i].id !== 0) {
+                        temp.children[i].id = 0;
+                        listToExplore.push(temp.children[i]);
+                    }
+                }
+                }
+               
+                  
+            }
+        };
+        let root = {
+            id: 1, name: "root", children: [
+                { id: 54, name: "folder1", children: [] },
+                { id: 55, name: "folder2", children: [] },
+                {
+                    id: 547, name: "folder3", children: [
+                        { id: 777, name: "test11", children: [
+                        { id: 87, name: "folder3", children: [] }, 
+                        ] },
+                        { id: 778, name: "abc" }
+                    ]
+                }
+            ]
+        }
+        bfs12(root)
+    </script>
+</head>
+
+<body>
+</body>
+
+</html>
